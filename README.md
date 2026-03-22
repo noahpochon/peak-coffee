@@ -2,7 +2,7 @@
 
 Peak Coffee est une interface web moderne et responsive permettant de personnaliser et commander son café en quelques clics. Ce projet a été réalisé dans le cadre de ma formation **BTS SIO SLAM**.
 
-![Preview du projet](https://via.placeholder.com/800x400?text=Peak+Coffee+Interface) ## 🚀 Fonctionnalités
+## 🚀 Fonctionnalités
 - **Personnalisation complète :** Choix de la saveur (Pistache, Noisette, Rhubarbe), de la taille et des extras.
 - **Panier dynamique :** Ajout d'articles en temps réel avec calcul automatique du prix total.
 - **Expérience Utilisateur (UX) :** Interface fluide avec système de "flashcards" et retour visuel immédiat.
