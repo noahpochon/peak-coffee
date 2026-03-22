@@ -1,0 +1,282 @@
+/* --- 1. RÉINITIALISATION & BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #fdf6ee;
+    color: #3e2723;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px 15px;
+}
+
+/* --- 2. EN-TÊTE --- */
+#titre {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #6f4e37;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1:first-child {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #2d1b15;
+}
+
+/* --- 3. SECTIONS COMMUNES --- */
+section {
+    background: #ffffff;
+    width: 100%;
+    max-width: 650px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(62, 39, 35, 0.07);
+    border: 1px solid #e8ddd3;
+    text-align: center;
+}
+
+section p {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #5d4037;
+    text-transform: uppercase;
+}
+
+/* --- 4. GRILLE DES CARTES --- */
+.flashcards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.card {
+    flex: 1 1 calc(33.333% - 15px);
+    min-width: 120px;
+    max-width: 180px;
+    cursor: pointer;
+}
+
+.card input {
+    display: none;
+}
+
+.card-content {
+    background: #fff;
+    border: 2px solid #d7ccc8;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-content {
+    transform: translateY(-3px);
+    border-color: #a1887f;
+}
+
+.card input:checked + .card-content {
+    background-color: #6f4e37;
+    color: #fff;
+    border-color: #4e342e;
+}
+
+.card input:checked + .card-content span,
+.card input:checked + .card-content strong {
+    color: #fff;
+}
+
+/* --- 5. SUCRE : BOUTONS OUI/NON --- */
+.choix-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-oui:hover {
+    background-color: #dcedc8;
+    border-color: #aed581;
+    color: #558b2f;
+}
+
+.btn-non:hover {
+    background-color: #ffe0b2;
+    border-color: #ffb74d;
+    color: #e65100;
+}
+
+.btn-oui.selected {
+    background-color: #8bc34a;
+    border-color: #689f38;
+    color: white;
+}
+
+.btn-non.selected {
+    background-color: #ff8a65;
+    border-color: #e64a19;
+    color: white;
+}
+
+/* --- 6. ZONE DE NOTE --- */
+#note-client {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #d7ccc8;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+    background-color: #fdf6ee;
+}
+
+#note-client:focus {
+    border-color: #6f4e37;
+}
+
+/* --- 7. PANIER --- */
+#panier-section {
+    border: 2px solid #6f4e37 !important;
+}
+
+#liste-panier li {
+    padding: 10px;
+    border-bottom: 1px solid #f4f1ea;
+    text-align: left;
+    list-style: none;
+}
+
+/* --- 8. BOUTONS D'ACTION --- */
+#commander {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+button {
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: none;
+}
+
+#btn-ajouter {
+    background-color: #6f4e37 !important;
+    color: white !important;
+}
+
+#btn-ajouter:hover {
+    background-color: #4e342e !important;
+    transform: scale(1.03);
+}
+
+#btn-valider {
+    background-color: #d7a97a !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+#btn-valider:hover {
+    background-color: #c47f4a !important;
+    transform: scale(1.03);
+}
+
+button img {
+    width: 22px;
+    height: 22px;
+}
+
+#btn-ajouter img,
+#btn-valider img {
+    filter: brightness(0) invert(1);
+}
+
+/* --- 9. MODAL --- */
+.modal-hidden {
+    display: none !important;
+}
+
+#modal-resume {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(45, 27, 21, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fffaf5;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    border: 3px solid #6f4e37;
+}
+
+.modal-content button {
+    margin: 10px auto;
+}
+
+#btn-fermer {
+    background-color: #f4ede6;
+    color: #5d4037;
+    border: 1px solid #d7ccc8 !important;
+}
+
+#btn-payer {
+    background-color: #6f4e37;
+    color: white;
+}
+
+/* --- 10. FOOTER --- */
+footer {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    color: #a1887f;
+    text-align: center;
+    line-height: 1.6;
+}
+
+footer a {
+    color: #6f4e37;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    body { padding: 20px 10px; }
+    .card { flex: 1 1 calc(50% - 10px); }
+}

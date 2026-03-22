@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <title>Peak coffee</title>
+</head>
+
+<body>
+    <section id="titre">
+        <h1>Bienvenue sur Peak coffee</h1>
+        <h1>Commandez votre café</h1>
+    </section>
+
+    <section id="saveur">
+        <p>Saveur du café 🍦</p>
+        <div class="flashcards-container">
+            <label class="card">
+                <input type="radio" name="Saveur_cafée" value="0">
+                <div class="card-content">
+                    <span>Pistache</span>
+                    
+                </div>
+            </label>
+            <label class="card">
+                <input type="radio" name="Saveur_cafée" value="0">
+                <div class="card-content">
+                    <span>Noisette</span>
+                   
+                </div>
+            </label>
+            <label class="card">
+                <input type="radio" name="Saveur_cafée" value="0">
+                <div class="card-content">
+                    <span>Rhubarbe</span>
+                   
+                </div>
+            </label>
+        </div>
+    </section>
+
+    <section id="taille">
+        <p>Taille du café ☕</p>
+        <div class="flashcards-container">
+            <label class="card">
+                <input type="radio" name="Taille_cafée" value="5">
+                <div class="card-content">
+                    <span>Petit</span>
+                    <strong>5€</strong>
+                </div>
+            </label>
+            <label class="card">
+                <input type="radio" name="Taille_cafée" value="10">
+                <div class="card-content">
+                    <span>Moyen</span>
+                    <strong>10€</strong>
+                </div>
+            </label>
+            <label class="card">
+                <input type="radio" name="Taille_cafée" value="12">
+                <div class="card-content">
+                    <span>Grand</span>
+                    <strong>12€</strong>
+                </div>
+            </label>
+        </div>
+    </section>
+
+    <section id="extras">
+        <p>Extras au choix ✨</p>
+        <div class="flashcards-container">
+            <label class="card">
+                <input type="radio" name="Extras" value="5">
+                <div class="card-content">
+                    <span>Chantilly</span>
+                    <strong>5€</strong>
+                </div>
+            </label>
+            <label class="card">
+                <input type="radio" name="Extras" value="10">
+                <div class="card-content">
+                    <span>Caramel</span>
+                    <strong>10€</strong>
+                </div>
+            </label>
+            <label class="card">
+                <input type="radio" name="Extras" value="12">
+                <div class="card-content">
+                    <span>Noisette</span>
+                    <strong>12€</strong>
+                </div>
+            </label>
+        </div>
+    </section>
+
+    <section>
+        <p>Avec du sucre ?</p>
+        <label class="card">
+            <div class="card-content">
+               <div class="choix-container">
+        <button type="button" class="btn-oui">OUI </button>
+        <button type="button" class="btn-non">NON </button>
+
+            </div>
+        </label>
+    </section>
+
+<section id="note-section">
+    <p>UNE NOTE À NOUS FAIRE PARVENIR POUR VOTRE COMMANDE ?</p>
+    <input type="text" id="note-client" ></input>
+</section>
+
+ <section id="panier-section" style="background-color: #fff; border: 2px solid #6f4e37;">
+        <p>🛒 Votre Panier</p>
+        <ul id="liste-panier" style="list-style: none; padding: 0; margin-bottom: 15px; color: #5d4037;">
+            <li style="font-style: italic;">Votre panier est vide</li>
+        </ul>
+        <div id="total-panier" style="font-weight: bold; font-size: 1.2rem; border-top: 1px solid #eee; padding-top: 10px;">
+            Total : 0€
+        </div>
+    </section>
+
+    <section id="commander">
+        <button type="button" id="btn-ajouter">
+            Ajouter au panier <img src="source/add.svg" alt="">
+        </button>
+        <button type="button" id="btn-valider">
+            Valider la commande <img src="source/add_shopping_cart_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+        </button>
+    </section>
+
+    <div id="modal-resume" class="modal-hidden">
+        <div class="modal-content">
+            <h2>CONFIRMATION DE COMMANDE ☕</h2>
+            <div id="resume-final-liste"></div>
+            <hr>
+            <p id="total-final"></p>
+            <button id="btn-fermer">Modifier ma commande</button>
+            <button id="btn-payer" onclick="alert('Paiement en cours...')">Payer maintenant 🚀</button>
+        </div>
+    </div>
+
+    <footer>Développé par Noah Pochon <br> <a href="https://noahpochon.github.io/">Mon portfolio</a></footer>
+
+</body>
+
+</html>
