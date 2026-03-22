@@ -12,22 +12,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalFinal = document.getElementById('total-final');
     const btnOui = document.querySelector('.btn-oui');
     const btnNon = document.querySelector('.btn-non');
+    const affichageNotePanier = document.getElementById('affichage-note-panier');
+    const btnPayer = document.getElementById('btn-payer'); 
 
     let totalCumule = 0;
-    let sucreChoisi = null; // null = pas encore choisi, true = oui, false = non
+    let sucreChoisi = null;
 
     // === BOUTONS OUI / NON ===
-    btnOui.addEventListener('click', () => {
-        sucreChoisi = true;
-        btnOui.classList.add('selected');
-        btnNon.classList.remove('selected');
-    });
+    if (btnOui && btnNon) {
+        btnOui.addEventListener('click', () => {
+            sucreChoisi = true;
+            btnOui.classList.add('selected');
+            btnNon.classList.remove('selected');
+        });
 
-    btnNon.addEventListener('click', () => {
-        sucreChoisi = false;
-        btnNon.classList.add('selected');
-        btnOui.classList.remove('selected');
-    });
+        btnNon.addEventListener('click', () => {
+            sucreChoisi = false;
+            btnNon.classList.add('selected');
+            btnOui.classList.remove('selected');
+        });
+    }
 
     // === AJOUTER AU PANIER ===
     btnAjouter.addEventListener('click', () => {
@@ -64,21 +68,46 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         listePanier.appendChild(nouvelArticle);
         totalAffichage.innerText = `Total : ${totalCumule}€`;
-        noteClient.value = '';
 
-        // Reset sucre
+        // Reset sucre pour la prochaine commande
         sucreChoisi = null;
-        btnOui.classList.remove('selected');
-        btnNon.classList.remove('selected');
+        if (btnOui) btnOui.classList.remove('selected');
+        if (btnNon) btnNon.classList.remove('selected');
     });
 
-    // === VALIDER LA COMMANDE ===
+    // === MISE À JOUR DE LA NOTE EN TEMPS RÉEL ===
+    if (noteClient && affichageNotePanier) {
+        noteClient.addEventListener('input', () => {
+            const texte = noteClient.value.trim();
+            if (texte !== "") {
+                affichageNotePanier.innerText = "📝 Note : " + texte;
+                affichageNotePanier.style.display = "block";
+            } else {
+                affichageNotePanier.style.display = "none";
+            }
+        });
+    }
+
+    // === VALIDER LA COMMANDE (OUVRIR MODAL) ===
     btnValider.addEventListener('click', () => {
         if (totalCumule === 0) {
             alert("Ton panier est vide !");
             return;
         }
-        resumeFinalListe.innerHTML = listePanier.innerHTML;
+
+        let contenuFinal = listePanier.innerHTML;
+        const maNote = noteClient.value.trim();
+
+        if (maNote !== "") {
+            contenuFinal += `
+                <li style="list-style:none; margin-top:15px; padding:10px; border-top:2px dashed #6f4e37; color:#6f4e37;">
+                    <strong>📝 Note pour le barista :</strong><br>
+                    "${maNote}"
+                </li>
+            `;
+        }
+
+        resumeFinalListe.innerHTML = contenuFinal;
         totalFinal.innerHTML = totalAffichage.innerHTML;
         modal.classList.remove('modal-hidden');
     });
@@ -88,4 +117,29 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.add('modal-hidden');
     });
 
+    // === ANIMATION DE PAIEMENT ===
+    if (btnPayer) {
+        btnPayer.addEventListener('click', () => {
+            const modalContent = document.querySelector('.modal-content');
+            
+            modalContent.innerHTML = `
+                <div class="spinner"></div>
+                <p>Traitement du paiement en cours...</p>
+                <p style="font-size: 0.8rem; color: gray;">Connexion sécurisée avec Wero 🔒</p>
+            `;
+
+            setTimeout(() => {
+                modalContent.innerHTML = `
+                    <div style="font-size: 50px;"></div>
+                    <h2 class="success-msg" style="color: #2e7d32; margin: 10px 0;">Paiement Accepté !</h2>
+                    <p>Merci pour votre commande chez <strong>Peak Coffee</strong>.</p>
+                    <p>Votre café sera prêt dans quelques minutes. ☕</p>
+                    <button onclick="window.location.reload()" 
+                            style="margin-top:20px; background:#6f4e37; color:white; padding: 12px 25px; border-radius: 30px; cursor:pointer; border:none; font-weight:bold;">
+                        Nouvelle commande
+                    </button>
+                `;
+            }, 2500);
+        });
+    }
 });
