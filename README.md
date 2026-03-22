@@ -14,11 +14,6 @@ Peak Coffee est une interface web moderne et responsive permettant de personnali
 - **CSS3** : Flexbox, animations de transition et design moderne (Coffee Style).
 - **JavaScript (Vanilla)** : Manipulation du DOM, gestion du panier et logique de calcul.
 
-## 📍 Installation
-Pour tester le projet localement :
-1. Clonez le dépôt : 
-   ```bash
-   git clone [https://github.com/ton-pseudo/peak-coffee.git](https://github.com/ton-pseudo/peak-coffee.git)
 
 
 ## 🔮 Évolutions à venir (Roadmap)
